@@ -1,12 +1,13 @@
 $(function() {
 
     var code = is_has_code();
+    alert(code);
     if (code) {
         save_access_token(code);
-    }
-
-    if (!is_has_access_token()) {
-        show_oauth_authorize();
+    } else {
+        if (!code) {
+            show_oauth_authorize();
+        }
     }
 
     $("#refresh").click(function() {
