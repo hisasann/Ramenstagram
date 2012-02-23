@@ -31,7 +31,7 @@ $(function () {
 
         var html = [];
         $.each(json, function (index, data) {
-            html.push('<a href="' + data.link + '" target="_blank"><img src="' + data.images.thumbnail.url + '"></a>');
+            html.push('<a href="' + data.link + '" target="_blank"><img src="' + data.images.low_resolution.url + '"></a>');
         });
 
         elem.html(html.join(""));
