@@ -18,7 +18,7 @@ $(function () {
 
         xhr.done(function (json) {
             console.log(json);
-            show_instagram_image(json.data);
+            show_instagram_image(arrayShuffle(json.data));
         });
 
         xhr.fail(function (jqXHR, textStatus) {
