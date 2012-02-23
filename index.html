@@ -21,9 +21,16 @@
 			font-size: 0;
 			line-height: 0;
 		}
+		
 		#image_wrapper img {
 			padding: 3px;
 			float: left;
+		}
+		
+		#loading {
+			font-size: 20px;
+			margin: 10px;
+			display: none;
 		}
 	</style>
 
@@ -41,6 +48,7 @@
 		<div class="span-24">
 			<input type="button" id="refresh" value="Refresh" />
 		</div>
+		<div id="loading" class="span-24"></div>
 		<div id="image_wrapper" class="span-24"></div>
 	</div> <!-- end .container -->
 </body>

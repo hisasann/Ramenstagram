@@ -1,7 +1,8 @@
 $(function () {
 
     var elem = $("#image_wrapper"),
-        refresh = $("#refresh");
+        refresh = $("#refresh"),
+        loading = $("#loading");
 
     refresh
         .bind("click", function() {
@@ -11,7 +12,7 @@ $(function () {
 
 
     function get_instagram_image() {
-        elem.html("　　Loading...");
+        loading.show();
 
         var TAG_NAME = "ramen";
         var xhr = $.ajax({
@@ -26,6 +27,7 @@ $(function () {
 
         xhr.done(function (json) {
             console.log(json);
+            loading.hide();
             show_instagram_image(arrayShuffle(json.data));
         });
 
