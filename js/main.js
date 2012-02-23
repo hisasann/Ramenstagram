@@ -2,6 +2,8 @@ $(function () {
 
     var elem = $("#image_wrapper");
 
+    get_instagram_image();
+
     function get_instagram_image() {
         var TAG_NAME = "ramen";
         var xhr = $.ajax({
@@ -15,6 +17,7 @@ $(function () {
         });
 
         xhr.done(function (json) {
+            console.log(json);
             show_instagram_image(json);
         });
 
@@ -27,7 +30,7 @@ $(function () {
         elem.html("");
 
         var html = [];
-        $.each(json, function(index, data) {
+        $.each(json, function (index, data) {
             html.push('<span>');
             html.push('<a href="' + data.link + '" target="_blank"><img src="' + data.images.low_resolution.url + '"></a>');
             html.push('</span>');
@@ -36,6 +39,18 @@ $(function () {
         elem.html(html.join(""));
     }
 
+    function arrayShuffle(list) {
+        var i = list.length;
+
+        while (--i) {
+            var j = Math.floor(Math.random() * (i + 1));
+            if (i == j) continue;
+            var k = list[i];
+            list[i] = list[j];
+            list[j] = k;
+        }
+        return list;
+    }
 
 //    var code = is_has_code();
 //    if (code) {
