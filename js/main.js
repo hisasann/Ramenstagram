@@ -16,13 +16,13 @@ $(function () {
 
         var TAG_NAME = "ramen";
         var xhr = $.ajax({
-            url:"https://api.instagram.com/v1/tags/" + TAG_NAME + "/media/recent",
+            url:"http://www28039u.sakura.ne.jp/instagram_tag",
             type:"GET",
             data:{
-                "access_token":"197750.f59def8.d84e874c9cf74779a2df73cc4e53056f"
+                "tag":TAG_NAME
             },
             cache:false,
-            dataType:"jsonp"
+            dataType:"json"
         });
 
         xhr.done(function (json) {
