@@ -1,5 +1,25 @@
 $(function() {
 
+        var xhr = $.ajax({
+            url: "https://api.instagram.com/v1/tags/search",
+            type: "GET",
+            data: {
+                "q": "ラーメン",
+                "access_token": "197750.f59def8.d84e874c9cf74779a2df73cc4e53056f"
+            },
+            cache: false,
+            dataType: "jsonp"
+        });
+
+        xhr.done(function(json) {
+            console.log(json);
+        });
+
+        xhr.fail(function(jqXHR, textStatus) {
+            alert( "Request failed: " + textStatus );
+        });
+
+
 //    var code = is_has_code();
 //    if (code) {
 //        save_access_token(code);
