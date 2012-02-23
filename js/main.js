@@ -1,8 +1,14 @@
 $(function () {
 
-    var elem = $("#image_wrapper");
+    var elem = $("#image_wrapper"),
+        refresh = $("#refresh");
 
-    get_instagram_image();
+    refresh
+        .bind("click", function() {
+            get_instagram_image();
+        })
+        .trigger("click");
+
 
     function get_instagram_image() {
         var TAG_NAME = "ramen";
