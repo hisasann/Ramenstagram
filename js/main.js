@@ -11,7 +11,7 @@ $(function () {
 
 
     function get_instagram_image() {
-        elem.html("&nbsp;&nbsp;&nbsp;Loading...");
+        elem.html("　　Loading...");
 
         var TAG_NAME = "ramen";
         var xhr = $.ajax({
