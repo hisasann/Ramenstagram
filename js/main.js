@@ -1,23 +1,40 @@
 $(function () {
 
-    var TAG_NAME = "ramen";
-    var xhr = $.ajax({
-        url:"https://api.instagram.com/v1/tags/" + TAG_NAME + "/media/recent",
-        type:"GET",
-        data:{
-            "access_token":"197750.f59def8.d84e874c9cf74779a2df73cc4e53056f"
-        },
-        cache:false,
-        dataType:"jsonp"
-    });
+    var elem = $("#image_wrapper");
 
-    xhr.done(function (json) {
-        console.log(json);
-    });
+    function get_instagram_image() {
+        var TAG_NAME = "ramen";
+        var xhr = $.ajax({
+            url:"https://api.instagram.com/v1/tags/" + TAG_NAME + "/media/recent",
+            type:"GET",
+            data:{
+                "access_token":"197750.f59def8.d84e874c9cf74779a2df73cc4e53056f"
+            },
+            cache:false,
+            dataType:"jsonp"
+        });
 
-    xhr.fail(function (jqXHR, textStatus) {
-        alert("Request failed: " + textStatus);
-    });
+        xhr.done(function (json) {
+            show_instagram_image(json);
+        });
+
+        xhr.fail(function (jqXHR, textStatus) {
+            alert("Request failed: " + textStatus);
+        });
+    }
+
+    function show_instagram_image(json) {
+        elem.html("");
+
+        var html = [];
+        $.each(json, function(index, data) {
+            html.push('<span>');
+            html.push('<a href="' + data.link + '" target="_blank"><img src="' + data.images.low_resolution.url + '"></a>');
+            html.push('</span>');
+        });
+
+        elem.html(html.join(""));
+    }
 
 
 //    var code = is_has_code();
