@@ -28,7 +28,7 @@ $(function () {
         xhr.done(function (json) {
             console.log(json);
             loading.hide();
-            show_instagram_image(arrayShuffle(json.data));
+            show_instagram_glitch_image(arrayShuffle(json.data));
         });
 
         xhr.fail(function (jqXHR, textStatus) {
@@ -43,6 +43,45 @@ $(function () {
         });
 
         elem.html(html.join(""));
+    }
+
+    function show_instagram_glitch_image(json) {
+        var image, anchor;
+        
+        $.each(json, function (index, data) {
+            var xhr = $.ajax({
+                type: "GET",
+                url: data.images.low_resolution.url,
+                cache: false,
+                beforeSend: function(xhr){
+                    xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                }
+            });
+
+            xhr.done(function (json) {
+                var type = xhr.getResponseHeader("Content-Type");
+
+                image = $("<img/>")
+                    .attr("src", [
+                        'data:',
+                        type,
+                        ';base64,',
+                        base64encode(xhr.responseText.replace(/0/g, Math.floor(Math.random() * 10))),
+                    ].join(''))
+                anchor = $("<a/>")
+                    .attr({
+                        "href": data.link,
+                        "target": "_blank"
+                    })
+                    .append(image);
+
+                elem.append(anchor);
+            });
+
+            xhr.fail(function (jqXHR, textStatus) {
+                alert("Request failed: " + textStatus);
+            });
+        });
     }
 
     function arrayShuffle(list) {
