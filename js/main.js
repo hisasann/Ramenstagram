@@ -28,7 +28,7 @@ $(function () {
         xhr.done(function (json) {
             console.log(json);
             loading.hide();
-            show_instagram_glitch_image(arrayShuffle(json.data));
+            show_instagram_image(arrayShuffle(json.data));
         });
 
         xhr.fail(function (jqXHR, textStatus) {
@@ -45,6 +45,7 @@ $(function () {
         elem.html(html.join(""));
     }
 
+    // instagramの画像URLがクロスドメインで取れないからダメだ。
     function show_instagram_glitch_image(json) {
         var image, anchor;
         
